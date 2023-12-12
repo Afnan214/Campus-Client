@@ -99,11 +99,11 @@ export const editStudentThunk = student => async () => {  // The THUNK
 
 // Single Student
 // THUNK CREATOR:
-export const fetchStudentThunk = id => async () => {  // The THUNK
+export const fetchStudentThunk = async (id) => {  // The THUNK
   try {
 
     // API "get" call to get a specific student (based on "id") data from database
-    let res = await api.get(`/api/students/${id}`);
+    let res = await api.get(`/api/students/${id}`)
     // Call Action Creator to return Action object (type + payload with student data)
     // Then dispatch the Action object to Reducer to display student data 
     return (res.data);

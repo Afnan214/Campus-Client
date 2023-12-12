@@ -8,12 +8,16 @@ It also defines the State and its default initial value.
 import { FETCH_STUDENT } from "../actions/actionTypes";  // Import Action Type
 import { createSlice } from "@reduxjs/toolkit"
 
+const initialState = {
+  student: {}
+}
+
 export const studentSlice = createSlice({
   name: "student",
-  initialState: {},
+  initialState,
   reducers: {
     studentFetched(state, action) {
-      state = action.payload
+      state.student = action.payload
     }
   }
 })
