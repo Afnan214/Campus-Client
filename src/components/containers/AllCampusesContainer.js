@@ -11,10 +11,11 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { Component } from "react";
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
-import { fetchAllCampusesThunk } from "../../store/thunks";
+import { fetchAllCampusesThunk, deleteCampusThunk, deleteStudentThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 import { useEffect } from 'react';
-import { allCampusesFetched } from '../../store/reducers/campuses';
+import { allCampusesFetched, campusDeleted } from '../../store/reducers/campuses';
+import { allStudentDeleted } from '../../store/reducers/students';
 const AllCampusesContainer = () => {
   const allCampuses = useSelector((state) => state.allCampuses.campuses)
   const dispatch = useDispatch()
@@ -28,12 +29,27 @@ const AllCampusesContainer = () => {
       dispatch(allCampusesFetched(res))
     })
   }, [])
+  const deleteCampus = async (campus) => {
 
+    await deleteCampusThunk(campus.id)
+      .then(() => {
+        campus.students.map(async (student) => {
+          await deleteStudentThunk(student.id)
+            .then(() => {
+              dispatch(allStudentDeleted(student.id))
+            })
+        })
+        dispatch(campusDeleted(campus.id))
+
+      })
+      .catch(e => console.log(e))
+
+  }
   return (
     <>
       <Header />
       <div>
-        <AllCampusesView campuses={allCampuses} />
+        <AllCampusesView campuses={allCampuses} deleteCampus={deleteCampus} />
       </div>
     </>
 

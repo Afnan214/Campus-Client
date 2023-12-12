@@ -3,8 +3,7 @@
 
 It contains all Thunk Creators and Thunks.
 ================================================== */
-import * as ac from './actions/actionCreators';  // Import Action Creators ("ac" keyword Action Creator)
-import { allCampusesFetched } from './reducers/campuses';
+
 import api from '../api/api';
 
 
@@ -37,7 +36,18 @@ export const addCampusThunk = async (campus) => {  // The THUNK
     console.error(err);
   }
 };
+//Delete Campus
+//THUNK CREATOR:
+export const deleteCampusThunk = async (id) => {
+  try {
+    const res = await api.delete(`/api/campuses/${id}`)
+    return res.data
+  }
+  catch (err) {
+    console.log(err)
+  }
 
+}
 
 // Single Campus
 // THUNK CREATOR:

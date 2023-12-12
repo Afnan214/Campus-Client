@@ -7,7 +7,7 @@ It constructs a React component to display all campuses.
 
 import { Link } from "react-router-dom";
 
-const AllCampusesView = ({ campuses }) => {
+const AllCampusesView = ({ campuses, deleteCampus }) => {
   // If there is no campus, display a message.
   if (!campuses.length) {
     return <div>There are no campuses.</div>;
@@ -26,7 +26,9 @@ const AllCampusesView = ({ campuses }) => {
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
+          <button onClick={() => deleteCampus(campus)}>delete</button>
           <hr />
+
         </div>
       ))}
       <br />
@@ -34,6 +36,7 @@ const AllCampusesView = ({ campuses }) => {
         <button>Add New Campus</button>
       </Link>
       <br /><br />
+
     </div>
   );
 };
