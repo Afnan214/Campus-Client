@@ -11,17 +11,13 @@ import api from '../api/api';
 
 export const fetchAllCampusesThunk = async () => {  // The THUNK
   try {
-
-
     let res = await api.get(`/api/campuses`)
       .then((res) => res.data)
       .catch((e) => console.log(e))
 
     // Call Action Creator to return Action object (type + payload with "campuses" data)
     // Then dispatch the Action object to Reducer to update state 
-
     return res
-
   } catch (err) {
     console.error(err);
   }
@@ -31,10 +27,11 @@ export const fetchAllCampusesThunk = async () => {  // The THUNK
 // THUNK CREATOR:
 export const fetchCampusThunk = (id) => async () => {  // The THUNK
   try {
-
     // API "get" call to get a student data (based on "id")from database
-    let res = await api.get(`/api/campuses/${id}`);
-    return (res.data);
+    let res = await api.get(`/api/campuses/${id}`)
+      .then((res => res.data))
+      .catch(e => console.log(e))
+    return res;
   } catch (err) {
     console.error(err);
   }
@@ -42,14 +39,16 @@ export const fetchCampusThunk = (id) => async () => {  // The THUNK
 
 // All Students
 // THUNK CREATOR:
-export const fetchAllStudentsThunk = () => async () => {  // The THUNK
+export const fetchAllStudentsThunk = async () => {  // The THUNK
   try {
-
     // API "get" call to get "students" data from database
     let res = await api.get(`/api/students`)
-      // Call Action Creator to return Action object (type + payload with "students" data)
-      // Then dispatch the Action object to Reducer to update state 
-      .then((res) => ((res.data)));
+      .then((res) => res.data)
+      .catch(e => console.log(e))
+    // Call Action Creator to return Action object (type + payload with "students" data)
+    // Then dispatch the Action object to Reducer to update state 
+    console.log(res)
+    return res
   } catch (err) {
     console.error(err);
   }
@@ -72,7 +71,7 @@ export const addStudentThunk = (student) => async () => {  // The THUNK
 
 // Delete Student
 // THUNK CREATOR:
-export const deleteStudentThunk = studentId => async () => {  // The THUNK
+export const deleteStudentThunk = async (studentId) => {  // The THUNK
   try {
 
     // API "delete" call to delete student (based on "studentID") from database

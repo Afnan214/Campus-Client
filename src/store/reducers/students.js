@@ -8,22 +8,24 @@ It also defines the State and its default initial value.
 import * as at from "../actions/actionTypes";  // Import Action Types ("at" keyword for Action Type)
 import { createSlice } from "@reduxjs/toolkit"
 
-
+const initialState = {
+  students: []
+}
 export const allStudentsSlice = createSlice({
   name: "allStudents",
-  initialState: [],
+  initialState,
   reducers: {
     allStudentsFetched(state, action) {
-      state = action.payload
+      state.students = action.payload
     },
     allStudentAdded(state, action) {
-      state = [...state, action.payload]
+      state.students = [...state.students, action.payload]
     },
     allStudentDeleted(state, action) {
-      state = state.filter(student => student.id !== action.payload)
+      state.students = state.students.filter(student => student.id !== action.payload)
     },
     allStudentEdited(state, action) {
-      state = state.map(student => {
+      state.students = state.students.map(student => {
         return (
           student.id === action.payload.id ? action.payload : student
         )

@@ -20,7 +20,7 @@ const AllCampusesContainer = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const fetchAllCampuses = async () => {
-      const res = await (fetchAllCampusesThunk())
+      const res = await fetchAllCampusesThunk()
       return res
     }
     const res = fetchAllCampuses()
