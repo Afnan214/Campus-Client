@@ -5,22 +5,41 @@ This is a Reducer function that accepts 2 parameters: the previous state object 
 Depending on the Action object, the Reducer updates the State and return the new State object.
 It also defines the State and its default initial value.
 ================================================== */
+import { createSlice } from '@reduxjs/toolkit'
 import { FETCH_CAMPUS } from "../actions/actionTypes";  // Import Action Type
 
-// Define default Initial State
-const initialState = {
-  students: [],  // Empty students array
-};
 
-// REDUCER:
-const campus = (state = initialState, action) => {  // Use "initialState" as default Initial State
-  switch (action.type) {
-    case FETCH_CAMPUS:
-      return action.payload;
-    default:
-      // If the Reducer doesn't recognize the Action Type, returns the previous (current) State unchanged.
-      return state;
+
+export const campusSlice = createSlice({
+  name: 'campus',
+  initialState: {
+    students: [],  // Empty students array
+  },
+  reducers: {
+    campusFetched(state, action) {
+      state = action.payload;
+    }
   }
-};
+})
+export const { campusFetched } = campusSlice.actions
+export default campusSlice.reducer;
 
-export default campus;
+
+
+
+// // Define default Initial State
+// const initialState = {
+//   students: [],  // Empty students array
+// };
+
+// // REDUCER:
+// const campus = (state = initialState, action) => {  // Use "initialState" as default Initial State
+//   switch (action.type) {
+//     case FETCH_CAMPUS:
+//       return action.payload;
+//     default:
+//       // If the Reducer doesn't recognize the Action Type, returns the previous (current) State unchanged.
+//       return state;
+//   }
+// };
+

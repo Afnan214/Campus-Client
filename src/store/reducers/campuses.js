@@ -7,15 +7,34 @@ It also defines the State and its default initial value.
 ================================================== */
 import * as at from "../actions/actionTypes";  // Import Action Types ("at" keyword for Action Type)
 
-// REDUCER:
-const allCampuses = (state = [], action) => {  // Empty array as default Initial State
-  switch (action.type) {
-    case at.FETCH_ALL_CAMPUSES:
-      return action.payload;
-    default:
-      // If the Reducer doesn't recognize the Action Type, returns the previous (current) State unchanged.
-      return state;
-  }
-};
+import { createSlice } from "@reduxjs/toolkit";
 
-export default allCampuses;
+const initialState = {
+  campuses: []
+}
+
+export const campusesSlice = createSlice({
+  name: "campuses",
+  initialState,
+  reducers: {
+    allCampusesFetched(state, action) {
+
+      state.campuses = action.payload
+    }
+  }
+})
+export const { allCampusesFetched } = campusesSlice.actions
+export default campusesSlice.reducer
+
+// // REDUCER:
+// const allCampuses = (state = [], action) => {  // Empty array as default Initial State
+//   switch (action.type) {
+//     case at.FETCH_ALL_CAMPUSES:
+//       return action.payload;
+//     default:
+//       // If the Reducer doesn't recognize the Action Type, returns the previous (current) State unchanged.
+//       return state;
+//   }
+// };
+
+// export default allCampuses;

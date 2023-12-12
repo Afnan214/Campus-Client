@@ -8,9 +8,9 @@ If needed, it also defines the component's "connect" function.
 import Header from './Header';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
-import { 
+import {
   fetchAllStudentsThunk,
   deleteStudentThunk
 } from '../../store/thunks';
@@ -24,13 +24,13 @@ class AllStudentsContainer extends Component {
   }
 
   // Render All Students view by passing all students data as props to the corresponding View component
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <Header />
-        <AllStudentsView 
+        <AllStudentsView
           students={this.props.allStudents}
-          deleteStudent={this.props.deleteStudent}   
+          deleteStudent={this.props.deleteStudent}
         />
       </div>
     )
@@ -57,4 +57,4 @@ const mapDispatch = (dispatch) => {
 // Export store-connected container by default
 // AllStudentsContainer uses "connect" function to connect to Redux Store and to read values from the Store 
 // (and re-read the values when the Store State updates).
-export default withRouter(connect(mapState, mapDispatch)(AllStudentsContainer));
+export default (connect(mapState, mapDispatch)(AllStudentsContainer));

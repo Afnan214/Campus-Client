@@ -6,26 +6,55 @@ Depending on the Action object, the Reducer updates the State and return the new
 It also defines the State and its default initial value.
 ================================================== */
 import * as at from "../actions/actionTypes";  // Import Action Types ("at" keyword for Action Type)
+import { createSlice } from "@reduxjs/toolkit"
 
-// REDUCER:
-const allStudents = (state=[], action) => {  // Empty array as default Initial State
-  switch (action.type) {
-    case at.FETCH_ALL_STUDENTS:
-      return action.payload;
-    case at.ADD_STUDENT:
-      return [...state, action.payload]
-    case at.DELETE_STUDENT:
-      return state.filter(student => student.id!==action.payload);
-    case at.EDIT_STUDENT:
-      return state.map(student => { 
+
+export const allStudentsSlice = createSlice({
+  name: "allStudents",
+  initialState: [],
+  reducers: {
+    allStudentsFetched(state, action) {
+      state = action.payload
+    },
+    allStudentAdded(state, action) {
+      state = [...state, action.payload]
+    },
+    allStudentDeleted(state, action) {
+      state = state.filter(student => student.id !== action.payload)
+    },
+    allStudentEdited(state, action) {
+      state = state.map(student => {
         return (
-          student.id===action.payload.id ? action.payload : student
-        );
-      });
-    default:
-      // If the Reducer doesn't recognize the Action Type, returns the previous (current) State unchanged.
-      return state;
-  }
-};
+          student.id === action.payload.id ? action.payload : student
+        )
+      })
+    }
 
-export default allStudents;
+  }
+})
+export const { allStudentsFetched, allStudentAdded, allStudentDeleted, allStudentEdited } = allStudentsSlice.actions
+export default allStudentsSlice.reducer;
+
+
+// // REDUCER:
+// const allStudents = (state=[], action) => {  // Empty array as default Initial State
+//   switch (action.type) {
+//     case at.FETCH_ALL_STUDENTS:
+//       return action.payload;
+//     case at.ADD_STUDENT:
+//       return [...state, action.payload]
+//     case at.DELETE_STUDENT:
+//       return state.filter(student => student.id!==action.payload);
+//     case at.EDIT_STUDENT:
+//       return state.map(student => {
+//         return (
+//           student.id===action.payload.id ? action.payload : student
+//         );
+//       });
+//     default:
+//       // If the Reducer doesn't recognize the Action Type, returns the previous (current) State unchanged.
+//       return state;
+//   }
+// };
+
+// export default allStudents;

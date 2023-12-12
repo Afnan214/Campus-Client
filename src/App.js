@@ -1,7 +1,7 @@
 import "./App.css";
 
 //Router
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 //Components
 import {
   HomePageContainer,
@@ -19,14 +19,14 @@ import {
 const App = () => {
   return (
     <div className="App">
-      <Switch>
-        <Route exact path="/" component={HomePageContainer} />
-        <Route exact path="/campuses" component={AllCampusesContainer} />
-        <Route exact path="/campus/:id" component={CampusContainer} />
-        <Route exact path="/students" component={AllStudentsContainer} />
-        <Route exact path="/newstudent" component={NewStudentContainer} />
-        <Route exact path="/student/:id" component={StudentContainer} />
-      </Switch>        
+      <Routes>
+        <Route exact path="/" element={<HomePageContainer />} />
+        <Route exact path="/campuses" element={<AllCampusesContainer />} />
+        <Route exact path="/campus/:id" element={<CampusContainer />} />
+        <Route exact path="/students" element={<AllStudentsContainer />} />
+        <Route exact path="/newstudent" element={<NewStudentContainer />} />
+        <Route exact path="/student/:id" element={<StudentContainer />} />
+      </Routes>
     </div>
   );
 }
