@@ -22,6 +22,22 @@ export const fetchAllCampusesThunk = async () => {  // The THUNK
     console.error(err);
   }
 };
+//add Campus
+//THUNK CREATOR:
+export const addCampusThunk = async (campus) => {  // The THUNK
+  try {
+
+    // API "post" call to add "student" object's data to database
+    let res = await api.post(`/api/campuses`, campus);
+    // Call Action Creator to return Action object (type + payload with new students data)
+    // Then dispatch the Action object to Reducer to update state 
+    console.log(res.data)
+    return (res.data);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 
 // Single Campus
 // THUNK CREATOR:

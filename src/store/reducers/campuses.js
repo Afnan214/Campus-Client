@@ -18,12 +18,14 @@ export const campusesSlice = createSlice({
   initialState,
   reducers: {
     allCampusesFetched(state, action) {
-
       state.campuses = action.payload
+    },
+    campusCreated(state, action) {
+      state.campuses.push(action.payload)
     }
   }
 })
-export const { allCampusesFetched } = campusesSlice.actions
+export const { allCampusesFetched, campusCreated } = campusesSlice.actions
 export default campusesSlice.reducer
 
 // // REDUCER:
