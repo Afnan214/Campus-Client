@@ -23,6 +23,7 @@ const StudentContainer = () => {
   useEffect(() => {
     const getStudent = async () => {
       const res = fetchStudentThunk(id)
+      console.log(res)
       return res
     }
     const res = getStudent()
@@ -34,6 +35,7 @@ const StudentContainer = () => {
   return (
     <>
       <Header />
+      {/* {student ? <li>exists</li> : <p>empty</p>} */}
       <StudentView student={student} />
     </>
 

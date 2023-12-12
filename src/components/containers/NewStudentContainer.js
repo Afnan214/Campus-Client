@@ -8,16 +8,18 @@ If needed, it also defines the component's "connect" function.
 import Header from './Header';
 // import { Component } from 'react';
 // import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { allStudentAdded } from '../../store/reducers/students';
 import NewStudentView from '../views/NewStudentView';
-// import { addStudentThunk } from '../../store/thunks';
+import { addStudentThunk } from '../../store/thunks';
 
 
 
 import { useEffect, useState } from 'react'
 
 const NewStudentContainer = () => {
+  const dispatch = useDispatch()
   const [state, setState] = useState({
     firstname: "",
     lastname: "",
@@ -28,23 +30,32 @@ const NewStudentContainer = () => {
   const navigate = useNavigate();
   useEffect(() => {
 
-  })
-  const handleChange = event => {
-    setState({
-      [event.target.name]: event.target.value
-    });
+  }, [])
+  const handleChange = (e) => {
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+    setState((oldData) => {
+      return {
+        ...oldData,
+        [fieldName]: fieldValue
+      }
+    })
   }
   const handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
-    let student = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      campusId: this.state.campusId
-    };
-    // Add new student in back - end database
-    let newStudent = await this.props.addStudent(student);
 
+    let student = {
+      firstname: state.firstname,
+      lastname: state.lastname,
+      campusId: state.campusId
+    };
+
+    // Add new student in back - end database
+    let res = await addStudentThunk(student);
+    console.log(res)
+    const newStudent = res
+    dispatch(allStudentAdded(res))
     // Update state, and trigger redirect to show the new student
     setState({
       firstname: "",
@@ -55,8 +66,8 @@ const NewStudentContainer = () => {
     });
   };
   // Redirect to new student's page after submit
-  if (this.state.redirect) {
-    return navigate(`/student/${this.state.redirectId}`);
+  if (state.redirect) {
+    return navigate(`/student/${state.redirectId}`);
     // return (<Redirect to={`/student/${this.state.redirectId}`} />)
   }
 

@@ -56,13 +56,14 @@ export const fetchAllStudentsThunk = async () => {  // The THUNK
 
 // Add Student
 // THUNK CREATOR:
-export const addStudentThunk = (student) => async () => {  // The THUNK
+export const addStudentThunk = async (student) => {  // The THUNK
   try {
 
     // API "post" call to add "student" object's data to database
     let res = await api.post(`/api/students`, student);
     // Call Action Creator to return Action object (type + payload with new students data)
     // Then dispatch the Action object to Reducer to update state 
+    console.log(res.data)
     return (res.data);
   } catch (err) {
     console.error(err);
