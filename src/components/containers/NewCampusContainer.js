@@ -48,10 +48,10 @@ const NewCampusContainer = () => {
             redirectId: newCampus.id
         });
     }
-    // if (state.redirect) {
-    //     return navigate(`/campus/${state.redirectId}`);
-    //     // return (<Redirect to={`/student/${this.state.redirectId}`} />)
-    // }
+    if (state.redirect) {
+        return navigate(`/campus/${state.redirectId}`);
+        // return (<Redirect to={`/student/${this.state.redirectId}`} />)
+    }
     return (
         <>
             <Header />

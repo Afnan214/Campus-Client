@@ -7,7 +7,7 @@ If needed, it also defines the component's "connect" function.
 ================================================== */
 import Header from './Header';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 // import { connect } from "react-redux";
 import { fetchStudentThunk } from "../../store/thunks";
@@ -18,25 +18,26 @@ import { StudentView } from "../views";
 
 const StudentContainer = () => {
   const student = useSelector(state => state.student.student)
+  const [loaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
   const { id } = useParams()
   useEffect(() => {
     const getStudent = async () => {
-      const res = fetchStudentThunk(id)
-      console.log(res)
+      const res = await fetchStudentThunk(id)
       return res
     }
     const res = getStudent()
     res.then((res) => {
-      console.log(res)
       dispatch(studentFetched(res))
+      setLoaded(true)
     })
   }, [])
   return (
     <>
       <Header />
-      {/* {student ? <li>exists</li> : <p>empty</p>} */}
-      <StudentView student={student} />
+      {loaded ? <StudentView student={student} /> : <p>empty</p>}
+
+
     </>
 
   )

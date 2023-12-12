@@ -17,6 +17,7 @@ import { addStudentThunk } from '../../store/thunks';
 
 
 import { useEffect, useState } from 'react'
+import { studentFetched } from '../../store/reducers/student';
 
 const NewStudentContainer = () => {
   const dispatch = useDispatch()
@@ -56,6 +57,7 @@ const NewStudentContainer = () => {
     console.log(res)
     const newStudent = res
     dispatch(allStudentAdded(res))
+    dispatch(studentFetched(res))
     // Update state, and trigger redirect to show the new student
     setState({
       firstname: "",

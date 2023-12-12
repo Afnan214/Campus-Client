@@ -41,7 +41,7 @@ export const addCampusThunk = async (campus) => {  // The THUNK
 
 // Single Campus
 // THUNK CREATOR:
-export const fetchCampusThunk = (id) => async () => {  // The THUNK
+export const fetchCampusThunk = async (id) => {  // The THUNK
   try {
     // API "get" call to get a student data (based on "id")from database
     let res = await api.get(`/api/campuses/${id}`)

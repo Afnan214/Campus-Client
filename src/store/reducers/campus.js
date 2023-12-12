@@ -9,15 +9,17 @@ import { createSlice } from '@reduxjs/toolkit'
 import { FETCH_CAMPUS } from "../actions/actionTypes";  // Import Action Type
 
 
-
 export const campusSlice = createSlice({
   name: 'campus',
   initialState: {
-    students: [],  // Empty students array
+    campus: {
+      students: []
+    },
+    // Empty students array
   },
   reducers: {
     campusFetched(state, action) {
-      state = action.payload;
+      state.campus = action.payload;
     }
   }
 })
