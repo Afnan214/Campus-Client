@@ -23,12 +23,19 @@ export const campusesSlice = createSlice({
     campusCreated(state, action) {
       state.campuses.push(action.payload)
     },
+    campusEdited(state, action) {
+      state.campuses = state.campuses.map(campus => {
+        return (
+          campus.id === action.payload.id ? action.payload : campus
+        )
+      })
+    },
     campusDeleted(state, action) {
       state.campuses = state.campuses.filter(campus => campus.id !== action.payload)
     }
   }
 })
-export const { allCampusesFetched, campusCreated, campusDeleted } = campusesSlice.actions
+export const { allCampusesFetched, campusCreated, campusEdited, campusDeleted } = campusesSlice.actions
 export default campusesSlice.reducer
 
 // // REDUCER:

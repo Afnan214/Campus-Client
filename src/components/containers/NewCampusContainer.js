@@ -13,7 +13,7 @@ const NewCampusContainer = () => {
             name: "",
             address: "",
             description: "",
-            redirect: true,
+            redirect: false,
             redirectId: null
         }
     )

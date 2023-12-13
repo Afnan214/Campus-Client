@@ -7,7 +7,7 @@ It contains all Thunk Creators and Thunks.
 import api from '../api/api';
 
 
-
+//FETCH ALL CAMPUSES
 export const fetchAllCampusesThunk = async () => {  // The THUNK
   try {
     let res = await api.get(`/api/campuses`)
@@ -36,18 +36,6 @@ export const addCampusThunk = async (campus) => {  // The THUNK
     console.error(err);
   }
 };
-//Delete Campus
-//THUNK CREATOR:
-export const deleteCampusThunk = async (id) => {
-  try {
-    const res = await api.delete(`/api/campuses/${id}`)
-    return res.data
-  }
-  catch (err) {
-    console.log(err)
-  }
-
-}
 
 // Single Campus
 // THUNK CREATOR:
@@ -62,6 +50,29 @@ export const fetchCampusThunk = async (id) => {  // The THUNK
     console.error(err);
   }
 };
+//Edit Campus
+//THUNK CREATOR:
+export const editCampusThunk = async (campus) => {
+  try {
+    console.log(campus)
+    let updatedCampus = await api.put(`/api/campuses/${campus.id}`, campus);
+    return updatedCampus.data;
+  }
+  catch (e) {
+    console.log(e);
+  }
+}
+//Delete Campus
+//THUNK CREATOR:
+export const deleteCampusThunk = async (campus) => {
+  try {
+    const res = await api.delete(`/api/campuses/${campus.id}`)
+    return res.data
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
 
 // All Students
 // THUNK CREATOR:
@@ -112,13 +123,13 @@ export const deleteStudentThunk = async (studentId) => {  // The THUNK
 
 // Edit Student
 // THUNK CREATOR:
-export const editStudentThunk = student => async () => {  // The THUNK
+export const editStudentThunk = async (student) => {  // The THUNK
   try {
 
     // API "put" call to update student (based on "id" and "student" object's data) from database
     let updatedStudent = await api.put(`/api/students/${student.id}`, student);
     // Update successful so change state with dispatch
-    return (updatedStudent);
+    return (updatedStudent.data);
   } catch (err) {
     console.error(err);
   }
