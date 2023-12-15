@@ -6,7 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 
 import { Link } from "react-router-dom";
-
+import "./AllCampusesView.css"
 const AllCampusesView = ({ campuses, deleteCampus }) => {
   // If there is no campus, display a message.
   if (!campuses.length) {
@@ -17,23 +17,22 @@ const AllCampusesView = ({ campuses, deleteCampus }) => {
   return (
     <div>
       <h1>All Campuses</h1>
+      <div className="AllCampusContainer">
+        {campuses.map((campus) => (
+          <div key={campus.id} className="CampusContainer">
+            <Link to={`/campus/${campus.id}`}>
+              <h2>{campus.name}</h2>
+            </Link>
+            <h4>campus id: {campus.id}</h4>
+            <button onClick={() => deleteCampus(campus)}>delete</button>
+            <Link to={`/campus/edit/${campus.id}`}>
+              <button>edit</button>
+            </Link>
+            <hr />
 
-      {campuses.map((campus) => (
-        <div key={campus.id}>
-          <Link to={`/campus/${campus.id}`}>
-            <h2>{campus.name}</h2>
-          </Link>
-          <h4>campus id: {campus.id}</h4>
-          <p>{campus.address}</p>
-          <p>{campus.description}</p>
-          <button onClick={() => deleteCampus(campus)}>delete</button>
-          <Link to={`/campus/edit/${campus.id}`}>
-            <button>edit</button>
-          </Link>
-          <hr />
-
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
       <br />
       <Link to={`/newcampus`}>
         <button>Add New Campus</button>
