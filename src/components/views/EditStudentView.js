@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -29,42 +30,37 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const NewCampusView = ({ handleChange, handleSubmit }) => {
+const EditStudentView = ({ handleChange, handleSubmit, studentinfo }) => {
     // const {handleChange, handleSubmit } = props;
     const classes = useStyles();
-
     // Render a New Student view with an input form
     return (
         <div>
-            <h1>New Campus</h1>
+            <h1>Edit student</h1>
 
             <div className={classes.root}>
                 <div className={classes.formContainer}>
                     <div className={classes.formTitle}>
                         <Typography style={{ fontWeight: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '20px', color: '#11153e' }}>
-                            Add a Student
+                            Edit student
                         </Typography>
                     </div>
                     <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
-                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>Campus Name: </label>
-                        <input type="text" name="name" onChange={(e) => handleChange(e)} required />
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>student Name: </label>
+                        <input type="text" name="firstname" onChange={(e) => handleChange(e)} value={studentinfo.firstname} />
                         <br />
                         <br />
 
                         <label style={{ color: '#11153e', fontWeight: 'bold' }}>Address: </label>
-                        <input type="text" name="address" onChange={(e) => handleChange(e)} required />
+                        <input type="text" name="lastname" onChange={(e) => handleChange(e)} value={studentinfo.lastname} />
                         <br />
                         <br />
 
                         <label style={{ color: '#11153e', fontWeight: 'bold' }}>description: </label>
-                        <textarea name="description" onChange={(e) => handleChange(e)} required />
+                        <textarea name="campusId" onChange={(e) => handleChange(e)} value={studentinfo.campusId} />
                         <br />
                         <br />
 
-                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>Image URL: </label>
-                        <input name="imageUrl" onChange={(e) => handleChange(e)} />
-                        <br />
-                        <br />
                         <Button variant="contained" color="primary" type="submit">
                             Submit
                         </Button>
@@ -77,4 +73,4 @@ const NewCampusView = ({ handleChange, handleSubmit }) => {
     )
 }
 
-export default NewCampusView
+export default EditStudentView

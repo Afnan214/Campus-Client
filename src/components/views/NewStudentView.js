@@ -60,11 +60,21 @@ const NewStudentView = ({ handleChange, handleSubmit }) => {
             <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
             <br />
             <br />
+            <label style={{ color: '#11153e', fontWeight: 'bold' }}>Email: </label>
+            <input type="email" name="email" onChange={(e) => handleChange(e)} required />
+            <br />
+            <br />
 
             <label style={{ color: '#11153e', fontWeight: 'bold' }}>Campus Id: </label>
             <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
             <br />
             <br />
+            <label style={{ color: '#11153e', fontWeight: 'bold' }}>GPA: </label>
+            <input type="number" step={".01"} max={4} name="GPA" onChange={(e) => handleChange(e)} required />
+            <br />
+            <br />
+
+
 
             <Button variant="contained" color="primary" type="submit">
               Submit

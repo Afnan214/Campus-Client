@@ -24,6 +24,8 @@ const NewStudentContainer = () => {
   const [state, setState] = useState({
     firstname: "",
     lastname: "",
+    email: "",
+    imageUrl: "",
     campusId: null,
     redirect: false,
     redirectId: null
@@ -49,6 +51,8 @@ const NewStudentContainer = () => {
     let student = {
       firstname: state.firstname,
       lastname: state.lastname,
+      email: state.email,
+      imageUrl: state.imageUrl,
       campusId: state.campusId
     };
 
@@ -62,6 +66,7 @@ const NewStudentContainer = () => {
     setState({
       firstname: "",
       lastname: "",
+      email: "",
       campusId: null,
       redirect: true,
       redirectId: newStudent.id

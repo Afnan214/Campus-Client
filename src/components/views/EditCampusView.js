@@ -48,17 +48,22 @@ const EditCampusView = ({ handleChange, handleSubmit, campusinfo }) => {
                     </div>
                     <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
                         <label style={{ color: '#11153e', fontWeight: 'bold' }}>Campus Name: </label>
-                        <input type="text" name="name" onChange={(e) => handleChange(e)} value={campusinfo.name} />
+                        <input type="text" name="name" onChange={(e) => handleChange(e)} value={campusinfo.name} required />
                         <br />
                         <br />
 
                         <label style={{ color: '#11153e', fontWeight: 'bold' }}>Address: </label>
-                        <input type="text" name="address" onChange={(e) => handleChange(e)} value={campusinfo.address} />
+                        <input type="text" name="address" onChange={(e) => handleChange(e)} value={campusinfo.address} required />
                         <br />
                         <br />
 
                         <label style={{ color: '#11153e', fontWeight: 'bold' }}>description: </label>
-                        <textarea name="description" onChange={(e) => handleChange(e)} value={campusinfo.description} />
+                        <textarea name="description" onChange={(e) => handleChange(e)} value={campusinfo.description} required />
+                        <br />
+                        <br />
+
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>Image URL: </label>
+                        <input name="imageUrl" onChange={(e) => handleChange(e)} value={campusinfo.imageUrl} />
                         <br />
                         <br />
 
