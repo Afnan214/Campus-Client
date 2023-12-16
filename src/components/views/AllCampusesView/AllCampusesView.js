@@ -7,6 +7,7 @@ It constructs a React component to display all campuses.
 
 import { Link } from "react-router-dom";
 import "./AllCampusesView.css"
+import Button from '@mui/material/Button';
 const AllCampusesView = ({ campuses, deleteCampus }) => {
   // If there is no campus, display a message.
   if (!campuses.length) {
@@ -18,26 +19,33 @@ const AllCampusesView = ({ campuses, deleteCampus }) => {
     <div>
       <h1>All Campuses</h1>
       <div className="AllCampusContainer">
-        {campuses.map((campus) => (
-          <div key={campus.id} className="CampusContainer">
-            <Link to={`/campus/${campus.id}`}>
-              <h2>{campus.name}</h2>
-            </Link>
-            <h4>campus id: {campus.id}</h4>
-            <button onClick={() => deleteCampus(campus)}>delete</button>
-            <Link to={`/campus/edit/${campus.id}`}>
-              <button>edit</button>
-            </Link>
-            <hr />
-
-          </div>
-        ))}
+        {campuses.map((campus) => {
+          return (
+            <div key={campus.id} className="CampusContainer">
+              <div className="CampusImage">
+                <img src={campus.imageUrl} className="CampusImage"></img>
+              </div>
+              <div className="CampusInfo">
+                <Link to={`/campus/${campus.id}`}>
+                  <h2>{campus.name}</h2>
+                </Link>
+                <h4>campus id: {campus.id}</h4>
+              </div>
+              <div className="CampusButtons">
+                <Link to={`/campus/edit/${campus.id}`}>
+                  <Button variant="outlined" color="primary" >edit</Button>
+                </Link>
+                <Button variant="outlined" color="error" onClick={() => deleteCampus(campus)}>delete</Button>
+              </div>
+            </div>
+          )
+        })}
       </div>
-      <br />
+
       <Link to={`/newcampus`}>
-        <button>Add New Campus</button>
+        <Button variant="contained" color="success">Add New Campus</Button>
       </Link>
-      <br /><br />
+
 
     </div>
   );

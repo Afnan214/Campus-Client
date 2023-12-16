@@ -17,27 +17,28 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+
   },
   title: {
     flexGrow: 1,
     textAlign: 'left',
     fontType: 'bold',
-    fontFamily: 'sans-serif', 
-    fontSize: '35px', 
-    color: 'darkblue'
+    fontFamily: 'sans-serif',
+    fontSize: '35px',
+    color: '#FFFFFF'
   },
-  appBar:{
-    backgroundColor: '#fcb6bb',
+  appBar: {
+    backgroundColor: '#1F2739;',
     shadows: ['none'],
   },
-  greeting:{
+  greeting: {
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: 'white',
     width: "50%",
     margin: "auto",
   },
-  links:{
+  links: {
     textDecoration: 'none',
   }
 }));
@@ -55,13 +56,13 @@ const Header = () => {
           </Typography>
 
           <Link className={classes.links} to={'/'} >
-            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+            <Button variant="contained" color="primary" style={{ marginRight: '10px' }}>
               Home
             </Button>
           </Link>
 
           <Link className={classes.links} to={'/campuses'} >
-            <Button variant="contained" color="primary" style={{marginRight: '10px'}}>
+            <Button variant="contained" color="primary" style={{ marginRight: '10px' }}>
               All Campuses
             </Button>
           </Link>
@@ -74,7 +75,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
     </div>
-  );    
+  );
 }
 
 export default Header;
