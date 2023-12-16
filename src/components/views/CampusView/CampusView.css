@@ -1,0 +1,43 @@
+.CampusName {
+    font-size: 3em;
+    font-weight: 700;
+    color: #DAA520
+}
+
+.CampusViewInfo {
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+
+}
+
+.CampusAddress {
+    margin-bottom: 10px;
+}
+
+.CampusDescription {
+    margin-bottom: 10px;
+}
+
+.CampusViewImage {
+    height: 50%;
+    width: 50%;
+}
+
+.CampusViewInfo a {
+    color: #CCCCCC;
+    font-size: 1.3em;
+
+}
+
+.CampusViewInfo a:hover {
+    color: #DAA520;
+
+}
+
+.StudentList {
+    font-weight: 500;
+    color: white;
+    font-size: 2em;
+}
