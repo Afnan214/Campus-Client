@@ -17,7 +17,7 @@ import {
   deleteStudentThunk
 } from '../../store/thunks';
 import { allStudentsFetched, allStudentDeleted } from '../../store/reducers/students';
-import AllStudentsView from '../views/AllStudentsView';
+import AllStudentsView from '../views/AllStudentsView/AllStudentsView';
 
 
 

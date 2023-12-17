@@ -26,14 +26,18 @@ const NewStudentContainer = () => {
     lastname: "",
     email: "",
     imageUrl: "",
+    GPA: "",
     campusId: null,
     redirect: false,
     redirectId: null
   })
   const navigate = useNavigate();
   useEffect(() => {
-
-  }, [])
+    if (state.redirect) {
+      return navigate(`/student/${state.redirectId}`);
+      // return (<Redirect to={`/student/${this.state.redirectId}`} />)
+    }
+  }, [state.redirect])
   const handleChange = (e) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
@@ -53,7 +57,8 @@ const NewStudentContainer = () => {
       lastname: state.lastname,
       email: state.email,
       imageUrl: state.imageUrl,
-      campusId: state.campusId
+      campusId: state.campusId,
+      GPA: state.GPA
     };
 
     // Add new student in back - end database
@@ -73,10 +78,7 @@ const NewStudentContainer = () => {
     });
   };
   // Redirect to new student's page after submit
-  if (state.redirect) {
-    return navigate(`/student/${state.redirectId}`);
-    // return (<Redirect to={`/student/${this.state.redirectId}`} />)
-  }
+
 
   // Display the input form via the corresponding View component
   return (

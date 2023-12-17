@@ -8,7 +8,7 @@ Note: A "barrel" file is a way to rollup exports from other modules into a singl
 The "barrel" (module) file re-exports the exports of other modules.
 ================================================== */
 export { default as AllCampusesView } from "./AllCampusesView/AllCampusesView";
-export { default as AllStudentsView } from "./AllStudentsView";
+export { default as AllStudentsView } from "./AllStudentsView/AllStudentsView";
 export { default as NewStudentView } from "./NewStudentView";
 export { default as CampusView } from "./CampusView/CampusView";
 export { default as StudentView } from "./StudentView";

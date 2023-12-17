@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './Header'
 import NewCampusView from '../views/NewCampusView'
 import { addCampusThunk } from '../../store/thunks'
@@ -13,10 +13,17 @@ const NewCampusContainer = () => {
             name: "",
             address: "",
             description: "",
+            imageUrl: "",
             redirect: false,
             redirectId: null
         }
     )
+    useEffect(() => {
+        if (state.redirect) {
+            return navigate(`/campus/${state.redirectId}`);
+            // return (<Redirect to={`/student/${this.state.redirectId}`} />)
+        }
+    }, [state.redirect])
     const handleChange = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -32,7 +39,8 @@ const NewCampusContainer = () => {
         let campus = {
             name: state.name,
             address: state.address,
-            description: state.description
+            description: state.description,
+            imageUrl: state.imageUrl
         };
 
         // Add new student in back - end database
@@ -41,21 +49,21 @@ const NewCampusContainer = () => {
         dispatch(campusCreated(newCampus))
         // Update state, and trigger redirect to show the new student
         setState({
-            firstname: "",
-            lastname: "",
+            name: "",
+            address: "",
+            imageUrl: "",
+            description: "",
             campusId: null,
             redirect: true,
             redirectId: newCampus.id
         });
     }
-    if (state.redirect) {
-        return navigate(`/campus/${state.redirectId}`);
-        // return (<Redirect to={`/student/${this.state.redirectId}`} />)
-    }
+
     return (
-        <>
+        <>{state.redirect ? <></> : <>
             <Header />
             <NewCampusView handleChange={handleChange} handleSubmit={handleSubmit} />
+        </>}
         </>
 
     )

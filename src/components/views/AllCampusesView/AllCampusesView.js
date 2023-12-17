@@ -16,7 +16,7 @@ const AllCampusesView = ({ campuses, deleteCampus }) => {
 
   // If there is at least one campus, render All Campuses view 
   return (
-    <div>
+    <div className="AllCampusView">
       <h1>All Campuses</h1>
       <div className="AllCampusContainer">
         {campuses.map((campus) => {
@@ -33,9 +33,9 @@ const AllCampusesView = ({ campuses, deleteCampus }) => {
               </div>
               <div className="CampusButtons">
                 <Link to={`/campus/edit/${campus.id}`}>
-                  <Button variant="outlined" color="primary" >edit</Button>
+                  <Button variant="outlined" color="primary" style={{ maxWidth: '80px', maxHeight: '40px', minWidth: '80px', minHeight: '40px' }} >edit</Button>
                 </Link>
-                <Button variant="outlined" color="error" onClick={() => deleteCampus(campus)}>delete</Button>
+                <Button variant="outlined" color="error" onClick={() => deleteCampus(campus)} style={{ maxWidth: '80px', maxHeight: '40px', minWidth: '80px', minHeight: '40px' }}>delete</Button>
               </div>
             </div>
           )

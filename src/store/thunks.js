@@ -64,9 +64,9 @@ export const editCampusThunk = async (campus) => {
 }
 //Delete Campus
 //THUNK CREATOR:
-export const deleteCampusThunk = async (campus) => {
+export const deleteCampusThunk = async (id) => {
   try {
-    const res = await api.delete(`/api/campuses/${campus.id}`)
+    const res = await api.delete(`/api/campuses/${id}`)
     return res.data
   }
   catch (err) {

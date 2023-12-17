@@ -30,7 +30,7 @@ const AllCampusesContainer = () => {
     })
   }, [])
   const deleteCampus = async (campus) => {
-
+    console.log(campus.id)
     await deleteCampusThunk(campus.id)
       .then(() => {
         campus.students.map(async (student) => {

@@ -1,25 +1,26 @@
-.AllCampusView {
+.AllStudentsView {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 
-.AllCampusContainer {
+.AllStudentsContainer {
     display: flex;
     flex-direction: column;
     width: 60%;
+
 }
 
-.CampusContainer {
+.Student {
     display: flex;
     height: 100px;
-    flex-grow: 1;
+    flex-grow: .5;
     border: solid .5px #DAA520;
     margin-top: 10px;
 }
 
-.CampusInfo {
+.StudentInfo {
     margin-left: 15px;
     flex-grow: .9;
     display: flex;
@@ -28,25 +29,14 @@
     justify-content: space-around;
 }
 
-a {
-    text-decoration: none;
-    color: #DAA520;
-    transition-duration: .4s;
-}
-
-a:hover {
-    color: #ffe6a6
-}
-
-.CampusButtons {
+.StudentButtons {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.CampusImage {
-    width: 200px;
+.StudentImageContainer {
+    width: 100px;
     height: 100%;
     object-fit: cover;
-
 }
