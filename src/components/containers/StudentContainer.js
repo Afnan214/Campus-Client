@@ -8,11 +8,12 @@ If needed, it also defines the component's "connect" function.
 import Header from './Header';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import { connect } from "react-redux";
-import { fetchStudentThunk } from "../../store/thunks";
-import { studentFetched } from '../../store/reducers/student';
+import { deleteStudentThunk, fetchStudentThunk } from "../../store/thunks";
+import { studentFetched, } from '../../store/reducers/student';
 import { StudentView } from "../views";
+import { allStudentDeleted } from '../../store/reducers/students';
 
 
 
@@ -21,6 +22,7 @@ const StudentContainer = () => {
   const [loaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
   const { id } = useParams()
+  const navigate = useNavigate()
   useEffect(() => {
     const getStudent = async () => {
       const res = await fetchStudentThunk(id)
@@ -32,10 +34,18 @@ const StudentContainer = () => {
       setLoaded(true)
     })
   }, [])
+  const DeleteStudent = async () => {
+    await deleteStudentThunk(student.id)
+      .then(() => {
+        dispatch(allStudentDeleted())
+      })
+      .catch((e) => console.log(e))
+    navigate('/students')
+  }
   return (
     <>
       <Header />
-      {loaded ? <StudentView student={student} /> : <p>empty</p>}
+      {loaded ? <StudentView student={student} DeleteStudent={DeleteStudent} /> : <p>empty</p>}
 
 
     </>

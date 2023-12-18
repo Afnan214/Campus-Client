@@ -61,7 +61,7 @@ const EditStudentView = ({ handleChange, handleSubmit, studentinfo }) => {
                         <br />
 
                         <label style={{ color: '#11153e', fontWeight: 'bold' }}>Campus Id: </label>
-                        <input type="text" name="campusId" onChange={(e) => handleChange(e)} value={studentinfo.campusId} required />
+                        <input type="text" name="campusId" onChange={(e) => handleChange(e)} value={studentinfo.campusId} />
                         <br />
                         <br />
                         <label style={{ color: '#11153e', fontWeight: 'bold' }}>ImageUrl: </label>

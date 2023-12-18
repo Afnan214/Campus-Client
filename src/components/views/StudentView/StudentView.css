@@ -1,0 +1,19 @@
+.StudentViewName {
+    font-size: 3em;
+    font-weight: 700;
+    color: #DAA520
+}
+
+.StudentViewImage {
+    height: 50%;
+    width: 50%;
+}
+
+.StudentViewCampus {
+    font-size: 2em;
+}
+
+/* 
+.StudentViewEmail {}
+
+.GPA {} */
