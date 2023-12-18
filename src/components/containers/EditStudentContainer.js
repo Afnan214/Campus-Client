@@ -57,7 +57,7 @@ const EditStudentContainer = () => {
         e.preventDefault()
 
         // Add new student in back - end database
-        console.log(student)
+
         let newStudent = await editStudentThunk(student);
 
         dispatch(allStudentEdited(newStudent))

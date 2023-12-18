@@ -46,18 +46,30 @@ const EditStudentView = ({ handleChange, handleSubmit, studentinfo }) => {
                         </Typography>
                     </div>
                     <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
-                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>student Name: </label>
-                        <input type="text" name="firstname" onChange={(e) => handleChange(e)} value={studentinfo.firstname} />
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>First Name: </label>
+                        <input type="text" name="firstname" onChange={(e) => handleChange(e)} value={studentinfo.firstname} required />
                         <br />
                         <br />
 
-                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>Address: </label>
-                        <input type="text" name="lastname" onChange={(e) => handleChange(e)} value={studentinfo.lastname} />
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>Last Name: </label>
+                        <input type="text" name="lastname" onChange={(e) => handleChange(e)} value={studentinfo.lastname} required />
+                        <br />
+                        <br />
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>Email: </label>
+                        <input type="email" name="email" onChange={(e) => handleChange(e)} value={studentinfo.email} required />
                         <br />
                         <br />
 
-                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>description: </label>
-                        <textarea name="campusId" onChange={(e) => handleChange(e)} value={studentinfo.campusId} />
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>Campus Id: </label>
+                        <input type="text" name="campusId" onChange={(e) => handleChange(e)} value={studentinfo.campusId} required />
+                        <br />
+                        <br />
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>ImageUrl: </label>
+                        <input type="text" name="imageUrl" onChange={(e) => handleChange(e)} value={studentinfo.imageUrl} required />
+                        <br />
+                        <br />
+                        <label style={{ color: '#11153e', fontWeight: 'bold' }}>GPA: </label>
+                        <input type="number" step={".01"} max={4} name="GPA" onChange={(e) => handleChange(e)} value={studentinfo.GPA} required />
                         <br />
                         <br />
 
