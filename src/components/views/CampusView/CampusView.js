@@ -6,8 +6,9 @@ It constructs a React component to display a single campus and its students (if 
 ================================================== */
 import { Link } from "react-router-dom";
 import './CampusView.css'
+import { Button } from "@mui/material";
 // Take in props data to construct the component
-const CampusView = ({ campus }) => {
+const CampusView = ({ campus, deleteCampus }) => {
 
 
   // Render a single Campus view with list of its students
@@ -19,6 +20,7 @@ const CampusView = ({ campus }) => {
       <p className="CampusAddress">{campus.address}</p>
       <p>Description: </p>
       <p className="CampusDescription">{campus.description}</p>
+      <Button onClick={deleteCampus} variant="outlined" color="error">Delete</Button>
       <p className="StudentList">List of Students</p>
       {campus.students.map(student => {
         let name = student.firstname + " " + student.lastname;

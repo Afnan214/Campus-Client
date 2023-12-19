@@ -8,9 +8,10 @@ If needed, it also defines the component's "connect" function.
 import Header from './Header';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCampusThunk } from "../../store/thunks";
+import { fetchCampusThunk, deleteCampusThunk } from "../../store/thunks";
 import { campusFetched } from '../../store/reducers/campus';
-import { useParams } from 'react-router-dom';
+import { campusDeleted } from '../../store/reducers/campuses';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CampusView } from '../views';
 
 const CampusContainer = () => {
@@ -18,6 +19,7 @@ const CampusContainer = () => {
   const [loaded, setLoaded] = useState(false)
   const campus = useSelector(state => state.campus.campus)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   useEffect(() => {
     const getCampus = async () => {
       const res = await fetchCampusThunk(id)
@@ -29,10 +31,18 @@ const CampusContainer = () => {
       setLoaded(true)
     })
   }, [])
+  const deleteCampus = async () => {
+    await deleteCampusThunk(campus.id)
+      .then(() => {
+        dispatch(campusDeleted(campus.id))
+      })
+      .catch((e) => console.log(e))
+    navigate('/campuses')
+  }
   return (
     <>
       <Header />
-      {loaded ? <CampusView campus={campus} /> : <p>Empty</p>}
+      {loaded ? <CampusView campus={campus} deleteCampus={deleteCampus} /> : <p>Empty</p>}
 
     </>
   )
