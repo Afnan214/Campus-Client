@@ -12,4 +12,4 @@ export { default as AllStudentsView } from "./AllStudentsView/AllStudentsView";
 export { default as NewStudentView } from "./NewStudentView";
 export { default as CampusView } from "./CampusView/CampusView";
 export { default as StudentView } from "./StudentView/StudentView";
-export { default as HomePageView } from "./HomePageView";
+export { default as HomePageView } from "./HomePageView/HomePageView";

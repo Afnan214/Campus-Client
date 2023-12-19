@@ -6,7 +6,7 @@ passes data (if any) as props to the corresponding View component.
 If needed, it also defines the component's "connect" function.
 ================================================== */
 import Header from './Header';
-import HomePageView from '../views/HomePageView';
+import HomePageView from '../views/HomePageView/HomePageView';
 
 // Render Home page view by the corresponding View component
 const HomePageContainer = () => {
@@ -15,7 +15,7 @@ const HomePageContainer = () => {
       <Header />
       <HomePageView />
     </div>
-    
+
   );
 };
 

@@ -6,16 +6,11 @@ passes data (if any) as props to the corresponding View component.
 If needed, it also defines the component's "connect" function.
 ================================================== */
 import Header from './Header';
-// import { Component } from 'react';
-// import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allStudentAdded } from '../../store/reducers/students';
 import NewStudentView from '../views/NewStudentView';
 import { addStudentThunk } from '../../store/thunks';
-
-
-
 import { useEffect, useState } from 'react'
 import { studentFetched } from '../../store/reducers/student';
 
